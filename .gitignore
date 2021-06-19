@@ -1,0 +1,8 @@
+/venv/
+/.idea/
+/data/
+/dev_sort_dev.txt
+/dev_sort_freq.txt
+/dev_sort_kurt.txt
+/geckodriver.log
+/converter.py
