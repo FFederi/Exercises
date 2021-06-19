@@ -4,14 +4,6 @@ import pathlib
 import os
 import sys
 
-banned = [  # lemmatization errors
-    "\n\n\u3000", "\n\n", "\n", "日", "月", "年", "wます", "者", "県", "人",
-    "的", "円", "市", "回", "中", "時", "店", "＝", "\u3000", "区", "約",
-    "後", "b", "目", "数", "分", "性", "前", "内",
-    # too generic
-    "時間", "日本"
-]
-
 data_path = pathlib.WindowsPath(os.getcwd() + '/data')
 
 
@@ -32,7 +24,7 @@ def lemmatize_day(day):
         doc = nlp(title + "\n" + article)
         art_lemmas = []
         for token in doc:
-            if not token.is_stop and not token.is_punct and not token.is_digit and token.lemma_ not in banned:
+            if not token.is_punct and not token.is_digit:
                 art_lemmas.append(token.lemma_)
         dct = dict([(i, art_lemmas.count(i)) for i in set(art_lemmas)])
         d_view = sorted(dct.items(), key=lambda x: x[1], reverse=True)
